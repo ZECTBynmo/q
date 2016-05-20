@@ -2031,7 +2031,7 @@ function nodeify(object, nodeback) {
 }
 
 Promise.prototype.nodeify = function (nodeback) {
-    if (nodeback) {
+    if (nodeback && nodeback.then) {
         this.then(function (value) {
             Q.nextTick(function () {
                 nodeback(null, value);
